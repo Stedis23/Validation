@@ -8,6 +8,7 @@ cleanly.
 
 ## Table of Contents
 
+- [Quick start](#quick-start)
 - [What is it and why use it?](#what-is-it-and-why-use-it)
 - [How to install](#how-to-install)
 - [Validation basics](#validation-basics)
@@ -19,6 +20,28 @@ cleanly.
   `Validated` class: handy validated value holder](#the-validated-class-handy-validated-value-holder)
 - [Handling validation results](#handling-validation-results)
 - [Built-in rules for strings and basic types](#built-in-rules-for-strings-and-basic-types)
+
+---
+
+## Quick start
+
+```kotlin
+val password = "YourPassword123!"
+
+// Validate your data by specifying a set of rules
+val result = password.validate(
+    MinLengthRule(12) +
+            ContainsUppercaseRule +
+            ContainsLowercaseRule +
+            ContainsDigitRule +
+            ContainsSpecialCharactersRule
+)
+
+// Use the validation result for further actions
+result
+    .onValid { println("success value $it") }
+    .onInvalid { _, errors -> println("has errors: $errors") }
+```
 
 ---
 
